@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+URI=http://central.maven.org/maven2/org/clojure/clojure/1.6.0/clojure-1.6.0-slim.jar
+JAR=clojure-1.6.0-slim.jar
+
+function oops() {
+  echo $@
+  exit 1
+}
+
+function power_up_java() {
+  which java > /dev/null || oops "Can't find java. Please ensure it's installed, and on the path"
+}
+
+function download_clojure() {
+  if which wget; then
+    wget $URI -O ~/.circ/$JAR --continue
+  elif which curl; then
+    curl --output ~/.circ/$JAR $URI
+  else
+    oops Please download $URI and save it as ~/.circ/$JAR
+  fi
+}
+
+function power_up_clojure() {
+  [ -d ~/.circ ] || mkdir ~/.circ
+  [ -f ~/.circ/$JAR ] || download_clojure
+}
+
+power_up_java
+power_up_clojure
+java -jar ~/.circ/$JAR $@
