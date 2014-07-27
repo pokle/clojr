@@ -1,6 +1,5 @@
 # circ
 
-
 Run single file clojure scripts. 
 
 ### Install
