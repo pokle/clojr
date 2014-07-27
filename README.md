@@ -8,7 +8,11 @@ Run single file clojure scripts.
     wget https://raw.githubusercontent.com/pokle/circ/master/circ -O /usr/local/bin/circ
     chmod +x /usr/local/bin/circ
 
-### Go!
+### Run your single file clojure scripts
+
+    circ yourscript.clj
+
+### Run your single file clojure scripts like a shell script
 
 When you write a little Clojure script, make sure the first line looks like this (sample.clj):
 
