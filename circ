@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-URI=http://central.maven.org/maven2/org/clojure/clojure/1.6.0/clojure-1.6.0-slim.jar
-JAR=clojure-1.6.0-slim.jar
+URI=http://central.maven.org/maven2/org/clojure/clojure/1.6.0/clojure-1.6.0.jar
+JAR=clojure-1.6.0.jar
 
 function oops() {
   echo $@
