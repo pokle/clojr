@@ -27,6 +27,16 @@ function power_up_clojure() {
   [ -f ~/.circ/$JAR ] || download_clojure
 }
 
+function construct_classpath() {
+  local program="$1"
+  local root=.
+  if [ ! -z "$program" ]; then
+    root=$(dirname $1)
+  fi
+  CLASSPATH=~/.circ/"$JAR:$root"
+}
+
 power_up_java
 power_up_clojure
-java -jar ~/.circ/$JAR $@
+construct_classpath $1
+java -cp $CLASSPATH clojure.main $@

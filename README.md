@@ -1,6 +1,6 @@
 # circ
 
-Run single file clojure scripts.
+Run single file clojure scripts. Must neater than creating a whole new leiningen project.
 
 ### Install
 
@@ -11,15 +11,19 @@ Run single file clojure scripts.
 
     circ yourscript.clj
 
-### Run your single file clojure scripts like a shell script
+### Hash bangs!
 
-When you write a little Clojure script, make sure the first line looks like this (sample.clj):
+Create a Clojure file starting with a has bang like this:
 
     #!/usr/bin/env bash circ
-
     (println "Hellfjord - watch it!")
 
-Make sure it's executable, and then just run it:
+And if you called it hello.clj, you can make it executable and run it:
 
-    $ ./sample.clj
+    $ chmod +x hello.clj
+    $ ./hello.clj
     Hellfjord - watch it!
+
+### Load adjacent files
+
+Just use the Clojure load function to load other files in directories relative to the inital one. Have a look at the load_hello.clj sample.
