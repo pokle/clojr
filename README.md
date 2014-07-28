@@ -4,7 +4,12 @@ Run single file clojure scripts. Much neater and simpler than creating a whole n
 
 circ only requires a unixy system like OS X or Linux with Java installed. It downloads Clojure for you the first time you run it.
 
-### Install
+### Mac OS X
+
+    brew tap pokle/docker
+    brew install --HEAD circ
+
+### Linux and other unixes
 
     wget https://raw.githubusercontent.com/pokle/circ/master/circ -O /usr/local/bin/circ
     chmod +x /usr/local/bin/circ
