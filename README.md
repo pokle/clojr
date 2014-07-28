@@ -1,6 +1,8 @@
 # circ
 
-Run single file clojure scripts. Must neater than creating a whole new leiningen project.
+Run single file clojure scripts. Much neater and simpler than creating a whole new leiningen project.
+
+circ only requires a unixy system like OS X or Linux with Java installed. It downloads Clojure for you the first time you run it.
 
 ### Install
 
