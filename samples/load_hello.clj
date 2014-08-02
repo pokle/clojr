@@ -1,4 +1,4 @@
-#!/usr/bin/env bash circ
+#!/usr/bin/env bash clojr
 
 (println "Here's how you load other files")
 

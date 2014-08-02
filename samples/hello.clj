@@ -1,3 +1,3 @@
-#!/usr/bin/env bash circ
+#!/usr/bin/env bash clojr
 
 (println "Hellfjord - watch it!")

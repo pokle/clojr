@@ -3,7 +3,7 @@
 CLOJURE_VERSION=1.6.0
 URI=http://central.maven.org/maven2/org/clojure/clojure/$CLOJURE_VERSION/clojure-$CLOJURE_VERSION.jar
 JAR=clojure-$CLOJURE_VERSION.jar
-DOWNLOADS=~/.circ
+DOWNLOADS=~/.clojr
 JAVA="java"
 
 function oops() {
