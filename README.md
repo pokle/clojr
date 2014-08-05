@@ -1,8 +1,12 @@
-# clojr
+# Clojr
 
-Run single file clojure scripts. Much neater and simpler than creating a whole new leiningen project.
+Clojr is short for Clojure runner.
 
-clojr only requires a unixy system like OS X or Linux with Java installed. It downloads Clojure for you the first time you run it.
+Use it to run single file Clojure apps. It's much lighter and faster than leiningen for this purpose.
+
+Clojr only requires a unixy system like OS X or Linux with Java installed. It downloads Clojure for you the first time you run it.
+
+[![Clojars Project](http://clojars.org/clojr/latest-version.svg)](http://clojars.org/clojr)
 
 ### Mac OS X
 
