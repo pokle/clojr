@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 VER=REPLACEMENT-TARGET
-URI=FIXME
+URI=https://clojars.org/repo/clojr/clojr/$VER/clojr-$VER.jar
 DOWNLOADS=~/.clojr
 JAR=$DOWNLOADS/clojr-$VER.jar
 JAVA="java"
