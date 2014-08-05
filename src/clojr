@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
+VER=REPLACEMENT-TARGET
 URI=FIXME
 DOWNLOADS=~/.clojr
-JAR=$DOWNLOADS/clojr-*-standalone.jar
+JAR=$DOWNLOADS/clojr-$VER-standalone.jar
 JAVA="java"
 
 function oops() {
@@ -15,27 +16,27 @@ function power_up_java() {
 }
 
 function download_clojr() {
+  mkdir -p $DOWNLOADS
   if which wget; then
-    wget "$URI" -O "$DOWNLOADS/$JAR" --continue
+    wget "$URI" -O "$JAR" --continue
   elif which curl; then
-    curl --output "$DOWNLOADS/$JAR" "$URI"
+    curl --output "$JAR" "$URI"
   else
-    oops "Please download $URI and save it as $DOWNLOADS/$JAR"
+    oops "Please download $URI and save it as $JAR"
   fi
 }
 
 function power_up_clojure() {
-  [ -d "$DOWNLOADS" ] || mkdir "$DOWNLOADS"
-  [ -f "$DOWNLOADS/$JAR" ] || download_clojr
+  [ -f "$JAR" ] || download_clojr
 }
 
 function construct_classpath() {
   local program="$1"
   local root=.
   if [ ! -z "$program" ]; then
-    root=$(dirname $1)
+    root=$(dirname $program)
   fi
-  CLASSPATH=$DOWNLOADS/"$JAR:$root"
+  CLASSPATH="$JAR:$root"
 }
 
 function rlwrap_java() {
