@@ -3,7 +3,7 @@
 VER=REPLACEMENT-TARGET
 URI=FIXME
 DOWNLOADS=~/.clojr
-JAR=$DOWNLOADS/clojr-$VER-standalone.jar
+JAR=$DOWNLOADS/clojr-$VER.jar
 JAVA="java"
 
 function oops() {

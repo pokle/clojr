@@ -1,4 +1,4 @@
-(defproject clojr "0.1.1"
+(defproject clojr "0.1.2"
   :description "Run single file clojure apps"
   :url "https://github.com/pokle/clojr"
   :license {:name "Eclipse Public License"
@@ -6,4 +6,6 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [com.cemerick/pomegranate "0.3.0"]]
   :profiles {:uberjar {:aot :all}}
+
+  :plugins [[lein-pprint "1.1.1"]]
 )

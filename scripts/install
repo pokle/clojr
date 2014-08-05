@@ -8,5 +8,5 @@ cd $(dirname $0)/..
 echo installing...
 rm -rf ~/.clojr
 mkdir -p ~/.clojr
-cp target/dist/clojr-*-standalone.jar ~/.clojr/
+cp target/dist/clojr-*.jar ~/.clojr/
 cp -f target/dist/clojr /usr/local/bin/clojr
