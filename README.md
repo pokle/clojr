@@ -20,15 +20,16 @@ Clojr only requires a unixy system like OS X or Linux with Java installed. It do
 
 Optionally install rlwrap - if you want nicer editing in the repl
 
-### Run your single file clojure scripts
+### Running
+#### Run your single file clojure scripts
 
     clojr yourscript.clj
 
-### Run a REPL
+#### Run a REPL
 
     clojr
 
-### Hash bangs!
+#### Hash bangs!
 
 Create a Clojure file starting with a has bang like this:
 
@@ -41,6 +42,22 @@ And if you called it hello.clj, you can make it executable and run it:
     $ ./hello.clj
     Hellfjord - watch it!
 
-### Load adjacent files
+#### Load adjacent files
 
 Just use the Clojure load function to load other files in directories relative to the inital one. Have a look at the load_hello.clj sample.
+
+#### Load maven / clojars dependencies
+
+Have a look at samples/dependencies.clj
+
+    ; Download and load the Cheshire json library into our classpath
+    (use 'clojr)
+    (dependencies '[[cheshire "LATEST"]])
+
+    ; Bring it into this namespace
+    (use 'cheshire.core)
+
+    ; use it!
+    (println
+      (parse-string "{\"it\":[\"works\"]}" true))
+
