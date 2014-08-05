@@ -13,5 +13,5 @@ lein pom
 mkdir target/dist
 cp pom.xml target/dist/
 cp target/clojr-$VER-standalone.jar target/dist/clojr-$VER.jar
-sed s/VER=REPLACEMENT-TARGET/VER=$VER/ src/clojr > target/dist/clojr
+sed s/^VER=.*/VER=$VER/ src/clojr > target/dist/clojr
 chmod +x target/dist/clojr

@@ -11,7 +11,7 @@ You can then run the samples:
 
 # Deployment process
 
-- Bump up the version in project.clj
+- Bump up the version in project.clj AND src/clojr
 - commit & push to github
 - ./scripts/build
 - scp target/dist/pom.xml target/dist/clojr-*.jar clojars@clojars.org:

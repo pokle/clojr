@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VER=REPLACEMENT-TARGET
+VER=0.1.2
 URI=https://clojars.org/repo/clojr/clojr/$VER/clojr-$VER.jar
 DOWNLOADS=~/.clojr
 JAR=$DOWNLOADS/clojr-$VER.jar
