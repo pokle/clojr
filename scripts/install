@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -e
+set -x
+
+cd $(dirname $0)/..
+
+echo building...
+rm -rf target
+lein uberjar
+
+echo installing...
+rm -rf ~/.clojr
+mkdir -p ~/.clojr
+cp target/clojr-*-standalone.jar ~/.clojr/
+cp -f src/clojr /usr/local/bin/clojr

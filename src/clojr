@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-CLOJURE_VERSION=1.6.0
-URI=http://central.maven.org/maven2/org/clojure/clojure/$CLOJURE_VERSION/clojure-$CLOJURE_VERSION.jar
-JAR=clojure-$CLOJURE_VERSION.jar
+URI=FIXME
 DOWNLOADS=~/.clojr
+JAR=$DOWNLOADS/clojr-*-standalone.jar
 JAVA="java"
 
 function oops() {
@@ -15,7 +14,7 @@ function power_up_java() {
   which java > /dev/null || oops "Can't find java. Please ensure it's installed, and on the path"
 }
 
-function download_clojure() {
+function download_clojr() {
   if which wget; then
     wget "$URI" -O "$DOWNLOADS/$JAR" --continue
   elif which curl; then
@@ -27,7 +26,7 @@ function download_clojure() {
 
 function power_up_clojure() {
   [ -d "$DOWNLOADS" ] || mkdir "$DOWNLOADS"
-  [ -f "$DOWNLOADS/$JAR" ] || download_clojure
+  [ -f "$DOWNLOADS/$JAR" ] || download_clojr
 }
 
 function construct_classpath() {
@@ -40,7 +39,7 @@ function construct_classpath() {
 }
 
 function rlwrap_java() {
-  if which rlwrap > /dev/null && 
+  if which rlwrap > /dev/null &&
     [ "$1" = "-r" -o "$1" = "--repl" -o "$#" = 0 ]; then
     JAVA="rlwrap $JAVA"
   fi

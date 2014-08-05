@@ -11,7 +11,7 @@ clojr only requires a unixy system like OS X or Linux with Java installed. It do
 
 ### Linux and other unixes
 
-    wget https://raw.githubusercontent.com/pokle/clojr/master/clojr -O /usr/local/bin/clojr
+    wget https://raw.githubusercontent.com/pokle/clojr/master/src/clojr -O /usr/local/bin/clojr
     chmod +x /usr/local/bin/clojr
 
 Optionally install rlwrap - if you want nicer editing in the repl
