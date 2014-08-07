@@ -1,6 +1,7 @@
-; Download and load the Cheshire json library into our classpath
-(use 'clojr)
-(dependencies '[[cheshire "LATEST"]])
+#!/usr/bin/env bash clojr
+
+; Download and load the Cheshire json library
+(clojr/dependencies '[[cheshire "LATEST"]])
 
 ; Bring it into this namespace
 (use 'cheshire.core)

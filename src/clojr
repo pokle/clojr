@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-VER=0.1.2
+VER=0.2.0
 URI=https://clojars.org/repo/clojr/clojr/$VER/clojr-$VER.jar
 DOWNLOADS=~/.clojr
 JAR=$DOWNLOADS/clojr-$VER.jar
-JAVA="java"
+JAVA=${JAVA:-java}
 
 function oops() {
   echo $@
@@ -50,4 +50,10 @@ power_up_clojure
 construct_classpath $1
 rlwrap_java
 
-$JAVA -cp $CLASSPATH clojure.main "$@"
+
+if [ $# = 0 ]; then
+  echo Clojr $VER
+  $JAVA -cp $CLASSPATH clojure.main -e "(require 'clojr)" -r
+else
+  $JAVA -cp $CLASSPATH clojure.main -e "(require 'clojr)" "$@"
+fi

@@ -2,25 +2,27 @@
 
 Clojr is short for Clojure runner.
 
-Use it to run single file Clojure apps. It's much lighter and faster than leiningen for this purpose.
+I've always wanted to write single file utility Clojure scripts like you can with shell scripts, ruby, python, perl, etc. Now you can with Clojr.
 
-Clojr only requires a unixy system like OS X or Linux with Java installed. It downloads Clojure for you the first time you run it.
 
-[![Clojars Project](http://clojars.org/clojr/latest-version.svg)](http://clojars.org/clojr)
+### Installation - Unixes
 
-### Mac OS X
-
-    brew tap pokle/docker
-    brew install --HEAD clojr
-
-### Linux and other unixes
+Download the Clojr shell script
 
     wget https://raw.githubusercontent.com/pokle/clojr/master/src/clojr -O /usr/local/bin/clojr
     chmod +x /usr/local/bin/clojr
 
-Optionally install rlwrap - if you want nicer editing in the repl
+Also install [Java](java.sun.com) and if you use the repl a lot, install rlwrap (to get history and fancy editing)
+
+### Installation - Mac OS X
+
+    brew tap pokle/docker
+    brew install --HEAD clojr
 
 ### Running
+
+The first time your run clojr, it will download its Clojure dependencies.
+
 #### Run your single file clojure scripts
 
     clojr yourscript.clj
@@ -48,11 +50,10 @@ Just use the Clojure load function to load other files in directories relative t
 
 #### Load maven / clojars dependencies
 
-Have a look at samples/dependencies.clj
+Have a look at samples/dependencies.clj:
 
     ; Download and load the Cheshire json library into our classpath
-    (use 'clojr)
-    (dependencies '[[cheshire "LATEST"]])
+    (clojr/dependencies '[[cheshire "LATEST"]])
 
     ; Bring it into this namespace
     (use 'cheshire.core)
