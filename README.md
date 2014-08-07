@@ -12,7 +12,7 @@ Download the Clojr shell script
     wget https://raw.githubusercontent.com/pokle/clojr/master/src/clojr -O /usr/local/bin/clojr
     chmod +x /usr/local/bin/clojr
 
-Also install [Java](java.sun.com) and if you use the repl a lot, install rlwrap (to get history and fancy editing)
+Also install [Java](http://java.sun.com), and if you use the repl a lot - install rlwrap (to get history and fancy editing)
 
 ### Installation - Mac OS X
 
