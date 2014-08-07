@@ -31,12 +31,11 @@ function power_up_clojure() {
 }
 
 function construct_classpath() {
-  local program="$1"
-  local root=.
-  if [ ! -z "$program" ]; then
-    root=$(dirname $program)
-  fi
-  CLASSPATH="$JAR:$root"
+  case $1 in
+    -*) CLASSPATH=$JAR;;
+    "") CLASSPATH=$JAR:.;;
+    *)  CLASSPATH=$JAR:$(dirname $1);;
+  esac
 }
 
 function rlwrap_java() {
@@ -51,4 +50,4 @@ power_up_clojure
 construct_classpath $1
 rlwrap_java
 
-$JAVA -cp $CLASSPATH clojure.main $@
+$JAVA -cp $CLASSPATH clojure.main "$@"
