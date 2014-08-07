@@ -6,7 +6,7 @@
 (def repositories
   (atom (merge cemerick.pomegranate.aether/maven-central clojars)))
 
-(defn add-repository [name uri]
+(defn add-repository
   "Add a maven repository before loading dependencies from it
 
   Example:
@@ -15,9 +15,10 @@
       (add-repository \"clojars\" \"http://clojars.org/repo\")
 
   "
+  [name uri]
 	(swap! repositories #(assoc %1 name uri)))
 
-(defn dependencies [coordinates]
+(defn dependencies
   "
   Load Maven / clojars dependencies into the Java classpath.
 
@@ -26,6 +27,7 @@
       (dependencies '[[cheshire \"5.3.1\"]
                       [data-validation \"1.0.1\"]])
   "
+  [coordinates]
 	(pomegranate/add-dependencies
      :coordinates coordinates
      :repositories @repositories))
