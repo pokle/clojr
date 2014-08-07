@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-scp target/dist/pom.xml target/dist/clojr-*.jar clojars@clojars.org:
+lein pom
+scp pom.xml target/dist/clojr-*.jar clojars@clojars.org:

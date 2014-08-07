@@ -9,9 +9,9 @@ VER=$(lein pprint :version | sed s/\"//g)
 
 rm -rf target
 lein uberjar
-lein pom
+
+# The dist dir is what we want the ~/.clojr dir to look after installation
 mkdir target/dist
-cp pom.xml target/dist/
 cp target/clojr-$VER-standalone.jar target/dist/clojr-$VER.jar
 sed s/^VER=.*/VER=$VER/ src/clojr > target/dist/clojr
 chmod +x target/dist/clojr
