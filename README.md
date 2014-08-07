@@ -50,15 +50,17 @@ Just use the Clojure load function to load other files in directories relative t
 
 #### Load maven / clojars dependencies
 
-Have a look at samples/dependencies.clj:
+You can download maven or clojars libraries with the clojr/dep macro:
 
-    ; Download and load the Cheshire json library into our classpath
-    (clojr/dependencies '[[cheshire "LATEST"]])
+    (clojr/dep cheshire) ; Loads the latest version of cheshire
+    (use 'cheshire.core) ; Bring it into our namespace
+    (parse-string "{}")  ; => {}
 
-    ; Bring it into this namespace
-    (use 'cheshire.core)
+You can specify a version like this:
 
-    ; use it!
-    (println
-      (parse-string "{\"it\":[\"works\"]}" true))
+    (clojr/dep cheshire "5.3.1")
+
+And roll in the '(use 'cheshire.core)' like this:
+
+    (clojr/dep cheshire "5.3.1" cheshire.core)
 

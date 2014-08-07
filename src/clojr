@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VER=0.2.0
+VER=0.3.0
 URI=https://clojars.org/repo/clojr/clojr/$VER/clojr-$VER.jar
 DOWNLOADS=~/.clojr
 JAR=$DOWNLOADS/clojr-$VER.jar
@@ -54,7 +54,7 @@ rlwrap_java
 if [ $# = 0 ]; then
   echo "Clojr $VER - https://github.com/pokle/clojr"
   echo "Powered by Clojure 1.6.0"
-  echo "HINT: (clojr/dependencies '[[cheshire \"5.3.1\"]])"
+  echo "HINT: (clojr/dep cheshire "5.3.1" cheshire.core)"
   echo "-----"
   $JAVA -cp $CLASSPATH clojure.main -e "(require 'clojr)" -r
 else

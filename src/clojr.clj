@@ -18,6 +18,11 @@
   [name uri]
 	(swap! repositories #(assoc %1 name uri)))
 
+
+(defn- force-clojure "Force our version of Clojure"
+  [ql] (conj ql '[org.clojure/clojure "1.6.0"]))
+
+
 (defn dependencies
   "
   Load Maven / clojars dependencies into the Java classpath.
@@ -29,5 +34,22 @@
   "
   [coordinates]
 	(pomegranate/add-dependencies
-     :coordinates coordinates
+     :coordinates (force-clojure coordinates)
      :repositories @repositories))
+
+
+
+(defmacro dep
+  ([name]
+   (list 'clojr/dependencies (list 'quote [[(symbol name) "LATEST"]])))
+
+  ([name version]
+   (list 'clojr/dependencies (list 'quote [[(symbol name) version]])))
+
+  ([name version use-ns]
+   (list 'do (list (list 'clojr/dependencies (list 'quote [[(symbol name) version]]))
+                   (list 'use (list 'quote (symbol use-ns)))
+                   ))
+   )
+
+  )
