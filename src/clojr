@@ -52,10 +52,10 @@ rlwrap_java
 
 
 if [ $# = 0 ]; then
-  echo "Clojr $VER - https://github.com/pokle/clojr"
-  echo "Powered by Clojure 1.6.0"
-  echo "HINT: (clojr/dep cheshire "5.3.1" cheshire.core)"
-  echo "-----"
+  echo 'Clojr $VER - https://github.com/pokle/clojr'
+  echo 'Powered by Clojure 1.6.0'
+  echo 'HINT: (clojr/dep cheshire "5.3.1" cheshire.core)'
+  echo '--'
   $JAVA -cp $CLASSPATH clojure.main -e "(require 'clojr)" -r
 else
   $JAVA -cp $CLASSPATH clojure.main -e "(require 'clojr)" "$@"
