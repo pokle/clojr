@@ -64,3 +64,6 @@ And roll in the '(use 'cheshire.core)' like this:
 
     (clojr/dep cheshire "5.3.1" cheshire.core)
 
+### Development
+
+Read doc/building.md
