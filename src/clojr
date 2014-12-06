@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VER=0.3.0
+VER=0.4.0
 URI=https://clojars.org/repo/clojr/clojr/$VER/clojr-$VER.jar
 DOWNLOADS=~/.clojr
 JAR=$DOWNLOADS/clojr-$VER.jar
@@ -48,15 +48,17 @@ function rlwrap_java() {
 power_up_java
 power_up_clojure
 construct_classpath $1
-rlwrap_java
+#rlwrap_java
 
+# MAIN=clojure.main
+MAIN=
 
 if [ $# = 0 ]; then
-  echo 'Clojr $VER - https://github.com/pokle/clojr'
+  echo "Clojr $VER - https://github.com/pokle/clojr"
   echo 'Powered by Clojure 1.6.0'
   echo 'HINT: (clojr/dep cheshire "5.3.1" cheshire.core)'
-  echo '--'
-  $JAVA -cp $CLASSPATH clojure.main -e "(require 'clojr)" -r
+  echo 'Starting Repl-y...'
+  $JAVA -cp $CLASSPATH reply.ReplyMain -e "(require 'clojr)"
 else
   $JAVA -cp $CLASSPATH clojure.main -e "(require 'clojr)" "$@"
 fi

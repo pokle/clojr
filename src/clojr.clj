@@ -4,6 +4,7 @@
 (def clojars {"clojars" "http://clojars.org/repo"})
 
 (def repositories
+     "All our golden repos"
   (atom (merge cemerick.pomegranate.aether/maven-central clojars)))
 
 (defn add-repository
@@ -25,7 +26,7 @@
 
 (defn dependencies
   "
-  Load Maven / clojars dependencies into the Java classpath.
+  Load Maven / s dependencies into the Java classpath.
 
   Example:
 
@@ -37,8 +38,6 @@
      :coordinates (force-clojure coordinates)
      :repositories @repositories))
 
-
-
 (defmacro dep
   ([name]
    (list 'clojr/dependencies (list 'quote [[(symbol name) "LATEST"]])))
@@ -48,7 +47,27 @@
 
   ([name version use-ns]
    (list 'do (list (list 'clojr/dependencies (list 'quote [[(symbol name) version]]))
-                   (list 'use (list 'quote (symbol use-ns)))
-                   ))
-   )
-)
+                   (list 'use (list 'quote (symbol use-ns)))))))
+
+
+;
+; from https://groups.google.com/forum/?fromgroups#!topic/clojure/cg7tFlgZYSw
+(defmacro __FILE__ []
+  `(if *file*
+        (let [f# (ClassLoader/getSystemResource *file*)]
+         (if f#
+           (.getCanonicalPath (java.io.File. (.toURI f#)))
+           (.getCanonicalPath (java.io.File. *file*))))))
+
+(defmacro __DIR__ []
+  `(dirname (__FILE__)))
+
+(defn dirname [path]
+  (.getParent (java.io.File. path)))
+
+
+(defn foo
+  "Does foo"
+  [x] (* x x))
+
+
