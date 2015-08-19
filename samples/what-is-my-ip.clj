@@ -2,4 +2,7 @@
 
 (clojr/dep cheshire "5.3.1" cheshire.core)
 
-(println (:ip (parse-string (slurp "http://ip.jsontest.com") true)))
+(-> (slurp "http://ip.jsontest.com")
+    (parse-string true)
+    :ip
+    println)
