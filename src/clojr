@@ -55,7 +55,7 @@ MAIN=
 
 if [ $# = 0 ]; then
   echo "Clojr $VER - https://github.com/pokle/clojr"
-  echo 'Powered by Clojure 1.6.0'
+  echo 'Powered by Clojure 1.7.0'
   echo 'HINT: (clojr/dep cheshire "5.3.1" cheshire.core)'
   echo 'Starting Repl-y...'
   $JAVA -cp $CLASSPATH reply.ReplyMain -e "(require 'clojr)"
