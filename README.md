@@ -8,12 +8,12 @@ I've always wanted to write single file utility Clojure scripts like you can wit
 
 Install [Java](http://java.sun.com), and if you use the repl a lot - install rlwrap (to get history and fancy editing).
 
-`sh
+```sh
 git clone https://github.com/pokle/clojr
 cd clojr
 ./scripts/build
 ./scripts/install
-`
+```
 
 And then you should have clojr installed in /usr/local/bin/ - which should be on your path.
 
