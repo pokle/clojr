@@ -3,8 +3,8 @@
   :url "https://github.com/pokle/clojr"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.7.0"]
-                 [com.cemerick/pomegranate "0.3.0"]
+  :dependencies [[org.clojure/clojure "1.8.0"]
+                 [com.cemerick/pomegranate "0.3.1"]
                  [reply "0.3.7"]]
   :profiles {:uberjar {:aot :all}}
 
