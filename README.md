@@ -4,20 +4,18 @@ Clojr is short for Clojure runner.
 
 I've always wanted to write single file utility Clojure scripts like you can with shell scripts, ruby, python, perl, etc. Now you can with Clojr.
 
-
 ### Installation - Unixes
 
-Download the Clojr shell script
+Install [Java](http://java.sun.com), and if you use the repl a lot - install rlwrap (to get history and fancy editing).
 
-    wget https://raw.githubusercontent.com/pokle/clojr/master/src/clojr -O /usr/local/bin/clojr
-    chmod +x /usr/local/bin/clojr
+`sh
+git clone https://github.com/pokle/clojr
+cd clojr
+./scripts/build
+./scripts/install
+`
 
-Also install [Java](http://java.sun.com), and if you use the repl a lot - install rlwrap (to get history and fancy editing)
-
-### Installation - Mac OS X
-
-    brew tap pokle/docker
-    brew install --HEAD clojr
+And then you should have clojr installed in /usr/local/bin/ - which should be on your path.
 
 ### Running
 
