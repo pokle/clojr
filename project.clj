@@ -9,4 +9,9 @@
                  [reply "0.5.1"]]
 
   :plugins [[lein-pprint "1.3.2"]
-            [lein-ancient "1.0.0-RC3"]])
+            [lein-ancient "1.0.0-RC3"]]
+
+  :deploy-repositories [["clojars" {:url "https://repo.clojars.org"
+                                    :sign-releases false
+                                    :username :env/clojars_username
+                                    :password :env/clojars_password}]])
