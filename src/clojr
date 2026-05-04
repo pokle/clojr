@@ -1,26 +1,26 @@
 #!/usr/bin/env bash
 
-VER=0.4.0
-URI=https://clojars.org/repo/clojr/clojr/$VER/clojr-$VER.jar
+VER=0.6.0
+URI=https://repo.clojars.org/clojr/clojr/$VER/clojr-$VER.jar
 DOWNLOADS=~/.clojr
-JAR=$DOWNLOADS/clojr-$VER.jar
+JAR="$DOWNLOADS/clojr-$VER.jar"
 JAVA=${JAVA:-java}
 
 function oops() {
-  echo $@
+  echo "$@"
   exit 1
 }
 
 function power_up_java() {
-  which java > /dev/null || oops "Can't find java. Please ensure it's installed, and on the path"
+  command -v java > /dev/null || oops "Can't find java. Please ensure it's installed, and on the path"
 }
 
 function download_clojr() {
-  mkdir -p $DOWNLOADS
-  if which wget; then
-    wget "$URI" -O "$JAR" --continue
-  elif which curl; then
-    curl --output "$JAR" "$URI"
+  mkdir -p "$DOWNLOADS"
+  if command -v curl > /dev/null; then
+    curl -fLo "$JAR" "$URI" || oops "Failed to download $URI"
+  elif command -v wget > /dev/null; then
+    wget "$URI" -O "$JAR" --continue || oops "Failed to download $URI"
   else
     oops "Please download $URI and save it as $JAR"
   fi
@@ -31,34 +31,23 @@ function power_up_clojure() {
 }
 
 function construct_classpath() {
-  case $1 in
-    -*) CLASSPATH=$JAR;;
-    "") CLASSPATH=$JAR:.;;
-    *)  CLASSPATH=$JAR:$(dirname $1);;
+  case "$1" in
+    -*) CLASSPATH="$JAR";;
+    "") CLASSPATH="$JAR:.";;
+    *)  CLASSPATH="$JAR:$(dirname "$1")";;
   esac
-}
-
-function rlwrap_java() {
-  if which rlwrap > /dev/null &&
-    [ "$1" = "-r" -o "$1" = "--repl" -o "$#" = 0 ]; then
-    JAVA="rlwrap $JAVA"
-  fi
 }
 
 power_up_java
 power_up_clojure
-construct_classpath $1
-#rlwrap_java
-
-# MAIN=clojure.main
-MAIN=
+construct_classpath "$1"
 
 if [ $# = 0 ]; then
   echo "Clojr $VER - https://github.com/pokle/clojr"
   echo 'Powered by Clojure'
-  echo 'HINT: (clojr/dep cheshire "5.3.1" cheshire.core)'
+  echo 'HINT: (clojr/dep cheshire "5.13.0" cheshire.core)'
   echo 'Starting Repl-y...'
-  $JAVA -cp $CLASSPATH reply.ReplyMain -e "(require 'clojr)"
+  exec "$JAVA" -cp "$CLASSPATH" clojure.main -m reply.main -e "(require 'clojr)"
 else
-  $JAVA -cp $CLASSPATH clojure.main -e "(require 'clojr)" "$@"
+  exec "$JAVA" -cp "$CLASSPATH" clojure.main -e "(require 'clojr)" "$@"
 fi

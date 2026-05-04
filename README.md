@@ -56,11 +56,11 @@ You can download maven or clojars libraries with the clojr/dep macro:
 
 You can specify a version like this:
 
-    (clojr/dep cheshire "5.3.1")
+    (clojr/dep cheshire "5.13.0")
 
 And roll in the '(use 'cheshire.core)' like this:
 
-    (clojr/dep cheshire "5.3.1" cheshire.core)
+    (clojr/dep cheshire "5.13.0" cheshire.core)
 
 ### Development
 
