@@ -22,4 +22,16 @@ fi
 
 lein pom
 cp -f "$UBER" "$DEPLOY_JAR"
+
+# Sanity: refuse to publish anything smaller than 1MB. The uberjar should
+# be ~15MB; the skinny lein-jar is ~9KB. Uploading the skinny jar to the
+# canonical coordinate would publish a non-runnable artifact.
+size=$(wc -c < "$DEPLOY_JAR")
+if [ "$size" -lt 1000000 ]; then
+  echo "ERROR: $DEPLOY_JAR is only ${size} bytes - expected the uberjar (~15MB)" >&2
+  echo "ERROR: did the uberjar copy fail? aborting deploy." >&2
+  exit 1
+fi
+
+echo "deploying $DEPLOY_JAR (${size} bytes) to clojars..."
 lein deploy clojars "clojr/clojr" "$VER" "$DEPLOY_JAR" pom.xml
