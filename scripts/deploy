@@ -1,11 +1,25 @@
 #!/usr/bin/env bash
 
-# Publish to Clojars. Requires CLOJARS_USERNAME and CLOJARS_PASSWORD
-# (a deploy token) in the environment, or credentials in
-# ~/.lein/credentials.clj.gpg under {#"clojars" {:username ... :password ...}}.
+# Publish the uberjar to Clojars at the canonical coordinate so the
+# wrapper script can fetch a self-contained, runnable jar from
+# https://repo.clojars.org/clojr/clojr/<VER>/clojr-<VER>.jar
+#
+# Requires CLOJARS_USERNAME and CLOJARS_PASSWORD (a deploy token) in the
+# environment.
 
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-lein deploy clojars
+VER=$(lein pprint :version | tr -d '"')
+UBER="target/clojr-$VER-standalone.jar"
+DEPLOY_JAR="target/clojr-$VER.jar"
+
+if ! [ -f "$UBER" ]; then
+  echo "$UBER not found - run ./scripts/build first" >&2
+  exit 1
+fi
+
+lein pom
+cp -f "$UBER" "$DEPLOY_JAR"
+lein deploy clojars "clojr/clojr" "$VER" "$DEPLOY_JAR" pom.xml
