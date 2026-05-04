@@ -9,7 +9,7 @@ I've always wanted to write single file utility Clojure scripts like you can wit
 You need [Java](https://adoptium.net/) on your `PATH`. Then drop the launcher into a directory on your `PATH`:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/pokle/clojr/v0.6.2/src/clojr -o ~/.local/bin/clojr
+curl -fsSL https://raw.githubusercontent.com/pokle/clojr/v0.6.3/src/clojr -o ~/.local/bin/clojr
 chmod +x ~/.local/bin/clojr
 ```
 

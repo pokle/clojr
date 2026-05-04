@@ -1,4 +1,4 @@
-(defproject clojr "0.6.2"
+(defproject clojr "0.6.3"
   :description "Run single file clojure apps"
   :url "https://github.com/pokle/clojr"
   :license {:name "Eclipse Public License"

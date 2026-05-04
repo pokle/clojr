@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VER=0.6.2
+VER=0.6.3
 URI=https://repo.clojars.org/clojr/clojr/$VER/clojr-$VER.jar
 DOWNLOADS=~/.clojr
 JAR="$DOWNLOADS/clojr-$VER.jar"
