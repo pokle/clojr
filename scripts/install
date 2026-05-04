@@ -1,12 +1,30 @@
 #!/usr/bin/env bash
 
-set -e 
-set -x
+set -euo pipefail
 
-cd $(dirname $0)/..
+cd "$(dirname "$0")/.."
 
-echo installing...
-rm -rf ~/.clojr
-mkdir -p ~/.clojr
-cp target/dist/clojr-*.jar ~/.clojr/
-cp -f target/dist/clojr /usr/local/bin/clojr
+PREFIX="${PREFIX:-/usr/local}"
+BIN="$PREFIX/bin"
+JAR_DIR="$HOME/.clojr"
+
+if ! [ -d target/dist ]; then
+  echo "target/dist not found - run ./scripts/build first" >&2
+  exit 1
+fi
+
+echo "installing clojr jars into $JAR_DIR..."
+mkdir -p "$JAR_DIR"
+rm -f "$JAR_DIR"/clojr-*.jar
+cp target/dist/clojr-*.jar "$JAR_DIR/"
+
+echo "installing clojr launcher into $BIN..."
+mkdir -p "$BIN" 2>/dev/null || true
+if [ -w "$BIN" ]; then
+  cp -f target/dist/clojr "$BIN/clojr"
+else
+  echo "  $BIN is not writable - using sudo"
+  sudo cp -f target/dist/clojr "$BIN/clojr"
+fi
+
+echo "done. make sure $BIN is on your PATH."

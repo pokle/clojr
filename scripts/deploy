@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
 
-lein pom
-scp pom.xml target/dist/clojr-*.jar clojars@clojars.org:
+# Publish to Clojars. Requires CLOJARS_USERNAME and CLOJARS_PASSWORD
+# (a deploy token) in the environment, or credentials in
+# ~/.lein/credentials.clj.gpg under {#"clojars" {:username ... :password ...}}.
+
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+lein deploy clojars

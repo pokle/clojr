@@ -1,7 +1,7 @@
 #!/usr/bin/env clojr
 
 (use 'clojr)
-(clojr/dep cheshire "5.3.1" cheshire.core)
+(clojr/dep cheshire "5.13.0" cheshire.core)
 
 
 (def tzf (clojure.java.io/file (__DIR__) "timezones.json"))

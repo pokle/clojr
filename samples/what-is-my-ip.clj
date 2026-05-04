@@ -1,8 +1,8 @@
 #!/usr/bin/env bash clojr
 
-(clojr/dep cheshire "5.3.1" cheshire.core)
+(clojr/dep cheshire "5.13.0" cheshire.core)
 
-(-> (slurp "http://ip.jsontest.com")
+(-> (slurp "https://api.ipify.org?format=json")
     (parse-string true)
     :ip
     println)

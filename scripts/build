@@ -1,17 +1,16 @@
 #!/usr/bin/env bash
 
-cd $(dirname $0)/..
+set -euo pipefail
 
-set -e
-set -x
+cd "$(dirname "$0")/.."
 
-VER=$(lein pprint :version | sed s/\"//g)
+VER=$(lein pprint :version | tr -d '"')
 
 rm -rf target
 lein uberjar
 
-# The dist dir is what we want the ~/.clojr dir to look after installation
+# The dist dir is what we want the ~/.clojr dir to look like after installation
 mkdir target/dist
-cp target/clojr-$VER-standalone.jar target/dist/clojr-$VER.jar
-sed s/^VER=.*/VER=$VER/ src/clojr > target/dist/clojr
+cp "target/clojr-$VER-standalone.jar" "target/dist/clojr-$VER.jar"
+sed "s/^VER=.*/VER=$VER/" src/clojr > target/dist/clojr
 chmod +x target/dist/clojr

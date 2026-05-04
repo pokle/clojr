@@ -5,6 +5,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.12.4"]
                  [clj-commons/pomegranate "1.3.26"]
+                 [org.slf4j/slf4j-nop "2.0.17"]
                  [reply "0.5.1"]]
 
   :plugins [[lein-pprint "1.3.2"]
