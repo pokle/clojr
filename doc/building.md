@@ -14,6 +14,11 @@ elsewhere, set `PREFIX`:
 
 	$ PREFIX=$HOME/.local ./scripts/install
 
+To uninstall:
+
+	$ ./scripts/uninstall
+	$ # or PREFIX=$HOME/.local ./scripts/uninstall if you used a custom prefix
+
 # Deployment process
 
 - Bump the version in `project.clj` (the build script propagates it into the launcher)

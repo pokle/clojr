@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+PREFIX="${PREFIX:-/usr/local}"
+BIN="$PREFIX/bin"
+LAUNCHER="$BIN/clojr"
+JAR_DIR="$HOME/.clojr"
+
+if [ -e "$LAUNCHER" ] || [ -L "$LAUNCHER" ]; then
+  echo "removing launcher $LAUNCHER..."
+  if [ -w "$BIN" ]; then
+    rm -f "$LAUNCHER"
+  else
+    echo "  $BIN is not writable - using sudo"
+    sudo rm -f "$LAUNCHER"
+  fi
+else
+  echo "no launcher at $LAUNCHER (skipping)"
+fi
+
+if [ -d "$JAR_DIR" ]; then
+  echo "removing runtime jars in $JAR_DIR..."
+  rm -rf "$JAR_DIR"
+else
+  echo "no runtime dir at $JAR_DIR (skipping)"
+fi
+
+echo "done."

@@ -62,6 +62,23 @@ And roll in the `(use 'cheshire.core)` like this:
 
     (clojr/dep cheshire "5.13.0" cheshire.core)
 
+### Uninstall
+
+If you installed via the curl one-liner, just remove the launcher and the cached jars:
+
+```sh
+rm -f ~/.local/bin/clojr   # or /usr/local/bin/clojr
+rm -rf ~/.clojr
+```
+
+If you installed from source, there's a script for it:
+
+```sh
+./scripts/uninstall
+# or, if your launcher lives somewhere other than /usr/local/bin:
+PREFIX=$HOME/.local ./scripts/uninstall
+```
+
 ### Development
 
 Read [doc/building.md](doc/building.md).
