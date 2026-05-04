@@ -72,7 +72,7 @@ if [ $# = 0 ]; then
   echo 'Powered by Clojure'
   echo 'HINT: (clojr/dep cheshire "5.13.0" cheshire.core)'
   echo 'Starting Repl-y...'
-  exec "$JAVA" -cp "$CLASSPATH" clojure.main -m reply.main -e "(require 'clojr)"
+  exec "$JAVA" -cp "$CLASSPATH" clojure.main -m reply.main --standalone -e "(require 'clojr)"
 else
   exec "$JAVA" -cp "$CLASSPATH" clojure.main -e "(require 'clojr)" "$@"
 fi
