@@ -4,24 +4,22 @@ Clojr is short for Clojure runner.
 
 I've always wanted to write single file utility Clojure scripts like you can with shell scripts, ruby, python, perl, etc. Now you can with Clojr.
 
-### Installation - Unixes
+### Quick install
 
-Install [Java](http://java.sun.com), and if you use the repl a lot - install rlwrap (to get history and fancy editing).
+You need [Java](https://adoptium.net/) on your `PATH`. Then drop the launcher into a directory on your `PATH`:
 
 ```sh
-git clone https://github.com/pokle/clojr
-cd clojr
-./scripts/build
-./scripts/install
+curl -fsSL https://raw.githubusercontent.com/pokle/clojr/v0.6.2/src/clojr -o ~/.local/bin/clojr
+chmod +x ~/.local/bin/clojr
 ```
 
-And then you should have clojr installed in /usr/local/bin/ - which should be on your path.
+(Substitute `/usr/local/bin` for `~/.local/bin` if you prefer it system-wide; `/usr/local/bin` may need `sudo`.)
+
+The first run downloads the runtime jar from Clojars into `~/.clojr`.
 
 ### Running
 
-The first time your run clojr, it will download its Clojure dependencies.
-
-#### Run your single file clojure scripts
+#### Run your single-file Clojure scripts
 
     clojr yourscript.clj
 
@@ -31,37 +29,39 @@ The first time your run clojr, it will download its Clojure dependencies.
 
 #### Hash bangs!
 
-Create a Clojure file starting with a has bang like this:
+Create a Clojure file starting with a hash bang like this:
 
-    #!/usr/bin/env bash clojr
-    (println "Hellfjord - watch it!")
+```clojure
+#!/usr/bin/env clojr
+(println "Hello" *command-line-args*)
+```
 
-And if you called it hello.clj, you can make it executable and run it:
+And if you called it `hello.clj`, you can make it executable and run it:
 
     $ chmod +x hello.clj
-    $ ./hello.clj
-    Hellfjord - watch it!
+    $ ./hello.clj world
+    Hello (world)
 
 #### Load adjacent files
 
-Just use the Clojure load function to load other files in directories relative to the inital one. Have a look at the load_hello.clj sample.
+Just use the Clojure `load` function to load other files in directories relative to the initial one. Have a look at the `samples/load_hello.clj` sample.
 
-#### Load maven / clojars dependencies
+#### Load Maven / Clojars dependencies
 
-You can download maven or clojars libraries with the clojr/dep macro:
+You can download Maven or Clojars libraries with the `clojr/dep` macro:
 
-    (clojr/dep cheshire) ; Loads the latest version of cheshire
-    (use 'cheshire.core) ; Bring it into our namespace
-    (parse-string "{}")  ; => {}
+    (clojr/dep cheshire)         ; Loads the latest version of cheshire
+    (use 'cheshire.core)         ; Bring it into our namespace
+    (parse-string "{}")          ; => {}
 
 You can specify a version like this:
 
     (clojr/dep cheshire "5.13.0")
 
-And roll in the '(use 'cheshire.core)' like this:
+And roll in the `(use 'cheshire.core)` like this:
 
     (clojr/dep cheshire "5.13.0" cheshire.core)
 
 ### Development
 
-Read doc/building.md
+Read [doc/building.md](doc/building.md).

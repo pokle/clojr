@@ -38,9 +38,34 @@ function construct_classpath() {
   esac
 }
 
+case "${1:-}" in
+  -V|--version)
+    echo "clojr $VER"
+    exit 0
+    ;;
+  -h|--help)
+    cat <<USAGE
+Clojr $VER - https://github.com/pokle/clojr
+
+Usage:
+  clojr                       Start a REPL
+  clojr <script.clj> [arg..]  Run a Clojure script
+  clojr -e '<expr>'           Evaluate an expression and exit
+  clojr -V | --version        Show clojr version
+  clojr -h | --help           Show this help
+
+The first run downloads the runtime jar from Clojars into ~/.clojr.
+
+Inside a script or REPL, dynamically load Clojars/Maven deps with:
+  (clojr/dep cheshire "5.13.0" cheshire.core)
+USAGE
+    exit 0
+    ;;
+esac
+
 power_up_java
 power_up_clojure
-construct_classpath "$1"
+construct_classpath "${1:-}"
 
 if [ $# = 0 ]; then
   echo "Clojr $VER - https://github.com/pokle/clojr"
